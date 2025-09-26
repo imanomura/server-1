@@ -20,13 +20,39 @@
     <p>
       <button @click="fetchData">データ取得</button>
     </p>
-    <p>変更</p>
+    <table>
+      <tr">
+        <th>名前</th>
+        <th>{{pok.name}}</th>
+        <th></th>
+      </tr>
+    </table>
   </body>
   <script>
     function dataset() {
       return {
         data: false,
-        async fetchData() {}
+        async fetchData() {
+          const res = await fetch('data.json');
+          const obj = await res.json();
+          const data = obj.list;
+          console.log(data[0].name);
+
+          const table=document.createElement('table');
+
+          for(pokemon of data){
+            const tr=document.createElement('tr');
+            table.appendChild(tr);
+
+            for(const pok of pokemon){
+            const td=document.createElement('td');
+            td.textContent=pokemon[pok]
+            tr.appendChild(td);
+            }
+          }
+
+          
+        }
       };
     }
   </script>
