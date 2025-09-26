@@ -36,7 +36,7 @@
           const res = await fetch('data.json');
           const obj = await res.json();
           const data = obj.list;
-          console.log(data[0].name);
+          console.log(data);
 
           const table = document.createElement('table');
           document.body.appendChild(table);
@@ -44,7 +44,7 @@
           for (const pokemon of data) {
             const tr = document.createElement('tr');
             table.appendChild(tr);
-            for (const pok of pokemon) {
+            for (const pok in pokemon) {
               const td = document.createElement('td');
               td.textContent = pokemon[pok];
               tr.appendChild(td);
